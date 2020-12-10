@@ -1,45 +1,44 @@
 #### Preamble ####
-# Purpose: Prepare and clean the survey data downloaded from [...UPDATE ME!!!!!]
-# Author: Rohan Alexander and Sam Caetano [CHANGE THIS TO YOUR NAME!!!!]
-# Data: 22 October 2020
-# Contact: rohan.alexander@utoronto.ca [PROBABLY CHANGE THIS ALSO!!!!]
+# Purpose: Prepare and clean the survey data obtained from a survey conducted through Google Forms by Yiqu Ding.
+# Author: Yiqu Ding
+# Data: 12 December 2020
+# Contact: yiqu.ding@mail.utoronto.ca
 # License: MIT
 # Pre-requisites: 
-# - Need to have downloaded the data from X and save the folder that you're 
-# interested in to inputs/data 
-# - Don't forget to gitignore it!
-
+# - You need to send an email to the contact email to obtain the data.
 
 #### Workspace setup ####
 library(haven)
 library(tidyverse)
-# Read in the raw data (You might need to change this if you use a different dataset)
-raw_data <- read_dta("inputs/data/ns20200625/ns20200625.dta")
+# Read in the raw data 
+raw_data <- read.csv("survey_results.csv")
 # Add the labels
 raw_data <- labelled::to_factor(raw_data)
-# Just keep some variables
-reduced_data <- 
+# Rename the variables
+renamed_data <- 
   raw_data %>% 
-  select(interest,
-         registration,
-         vote_2016,
-         vote_intention,
-         vote_2020,
-         ideo5,
-         employment,
-         foreign_born,
-         gender,
-         census_region,
-         hispanic,
-         race_ethnicity,
-         household_income,
-         education,
-         state,
-         congress_district,
-         age)
+  rename(
+    qualification = Are.you.a.third.year.student.at.the.University.of.Toronto.and.enrolled.in.a.stats.related.program.,
+    program = What.is.the.name.of.the.program.that.you.are.enrolled.in.,
+    sex = What.is.your.gender.,
+    coding_exp =  Do.you.have.experience.with.any.other.programming.languages.except.for.R.,
+    cgpa = What.is.your.cGPA.at.the.time.of.the.survey.,
+    anxiety_score = If.you.were.asked.to.independently.complete.a.data.analysis.using.R..how.do.you.feel..,
+    suggestion = What.would.ease.your.worries.about.R.
+  )
+#Keep only part of the variables
+reduced_data <- 
+  renamed_data %>% 
+  select(
+    qualification, program, sex, coding_exp, cgpa, anxiety_score
+  )
+#Only keep responses who answered 'yes' to the qualification question
+reduced_data <- na.omit(reduced_data)
+#We no longer need the qualification question
+final_data <- 
+  reduced_data %>% 
+  select(program, sex, coding_exp, cgpa, anxiety_score)
 
+#Export the cleaned data
+write.csv(final_data, file = "clean_data.csv")
 
-#### What else???? ####
-# Maybe make some age-groups?
-# Maybe check the values?
-# Is vote a binary? If not, what are you going to do?

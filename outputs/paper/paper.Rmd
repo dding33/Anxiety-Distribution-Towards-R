@@ -1,89 +1,71 @@
 ---
-title: "TBD"
-subtitle: "TBD"
-author: "TBD"
-thanks: "Code and data are available at: LINK."
-date: "`r format(Sys.time(), '%d %B %Y')`"
+title: "Estimating R Anxiety Level Distribution Among Students At the University Using MRP"
+author: "Yiqu Ding"
+thanks: "Code and data are available at: https://github.com/dding33/STA304-PS5."
+date: "`r Sys.Date()`"
 abstract: |
-  | First sentence. Second sentence. Third sentence. Fourth sentence. 
+  | In this report, I look at different factors that affect a studebt's anxiety level towards using R. The data is obtained from onlien survey responses which contained variables that could influence anxiety levels. I then run a multilevel regression on the sample and post-stratify them using a simulated student census. After the post-stratification, the results tells us...(.)
 output:
-  bookdown::pdf_document2:
-toc: FALSE
+   bookdown::pdf_document2:
+    toc: false
+    latex_engine: xelatex
 bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
+#hide code from pdf outputs
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+#load libraries that I am going to use
 library(tidyverse)
+library(readr)
 library(palmerpenguins)
 ```
 
+## Keywords
+
+MRP, R, Psychology, Education
+
 # Introduction
 
-
-
+  Relatively speaking, the science of statistics is a new discipline. In 1998, the public image of statistics was poor, and almost nobody knows what statisticians do. Now, statistics is an essential tool for nearly all millennial industries. Accompanied by technological improvements in computers, R has become a necessary tool for all statistical practitioners; that makes the teaching and training of R extremely important.
+  
+  I am interested in the distribution of R anxiety levels among students. In this report, I will show the method to estimate the anxiety distribution among students using a sample I collected from the University of Toronto. I run a multilevel regression on my sample and then post-stratify the results using a simulated student census to get population estimates.
+  
+  The results of the analysis can be useful in many ways. The university can periodically conduct this analysis to keep track of teaching results; generally, this method should be solid for similar reports in any other university. Students can use the information as a threshold to understand where they stand among their peers. It is also possible to study the effect of a treatment such as data camp using this approach, which potentially saves cost for the department.
+  
+  In paper we run our analysis in `R` [@citeR]. We also use the `tidyverse` which was written by @tydr.
 
 # Data
 
-Our data is of penguins (Figure \@ref(fig:bills)).
-
-```{r bills, fig.cap="Bills of penguins", echo = FALSE}
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = FALSE) +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
+```{r}
+#Import the data and attach the variables to the path
+clean_data <- read_csv("~/GitHub/STA304-PS5/inputs/data/clean_data.csv")
+attach(clean_data)
 ```
 
-Talk more about it.
+The data is of students enrolled in a program under the statistics department and are in their third year of study. (Figure \@ref(fig:program)).
 
-Also bills and their average (Figure \@ref(fig:billssssss)). (Notice how you can change the height and width so they don't take the whole page?)
-
-```{r billssssss, fig.cap="More bills of penguins", echo = FALSE, fig.width=8, fig.height=4}
-
-# This needs to be about the random data tha tI sasmpled?
-ggplot(penguins, aes(x = island, fill = species)) +
+```{r program, fig.cap="Distribution of Programs", echo = FALSE}
+ggplot(clean_data, aes(x = program, fill = coding_exp)) +
   geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
+  scale_fill_manual(values = c("purple","cyan4"),
                     guide = FALSE) +
   theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
   coord_flip()
 ```
-
-Talk way more about it. 
-
-
 
 # Model
 
 \begin{equation}
-Pr(\theta | y) = \frac{Pr(y | \theta) Pr(\theta)}{Pr(y)}  (\#eq:bayes)
+\hat{y}_S^{PS} = \frac{\sum{N_j\hat{y_j}}}{\sum{N_j}}  (\#eq:PS)
 \end{equation}
 
-Equation \@ref(eq:bayes) seems useful, eh?
-
-Here's a dumb example of how to use some references: In paper we run our analysis in `R` [@citeR]. We also use the `tidyverse` which was written by @thereferencecanbewhatever If we were interested in baseball data then @citeLahman could be useful. 
-
+We get our post-stratification estimates by equation \@ref(eq:PS).
 
 # Results
 
 # Discussion
 
-## First discussion point
-
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
-
-## Second discussion point
-
-## Third discussion point
-
-## Weaknesses and next steps
-
-Weaknesses and next steps should also be included.
 
 \newpage
 
@@ -93,5 +75,3 @@ Weaknesses and next steps should also be included.
 
 
 # References
-
-
