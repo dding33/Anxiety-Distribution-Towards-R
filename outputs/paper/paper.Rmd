@@ -6,9 +6,7 @@ date: "`r Sys.Date()`"
 output: pdf_document
 bibliography: references.bib
 abstract: |
-  In this report, I look at different factors that affect a studebt's anxiety level towards   using R. The data is obtained from onlien survey responses which contained variables that   could influence anxiety levels. I then run a multilevel regression on the sample and       post-stratify them using a simulated student census. After the post-stratification, we 
-  see the estimated mean anxiety scores are higher average anxiety scores from the raw 
-  data.
+  In this report, I look at different factors that affect a student's anxiety level towards using R. The data is obtained from online survey responses, which contained variables that could influence anxiety levels. I then run a multilevel regression on the sample and post-stratify them using a simulated student census. After the post-stratification, we see the estimated mean anxiety scores are higher than average anxiety scores from the raw data.
   
   **Keywords**: MRP, R, Psychology, Education
 ---
@@ -28,15 +26,15 @@ library(ggpubr)#to put ggplots into a matrix
 
 # Introduction
 
-  Relatively speaking, the science of statistics is a new discipline. In 1998, the public image of statistics was poor, and almost nobody knows what statisticians do[from stats]. Now, statistics is an essential tool for nearly all millennial industries. Accompanied by technological improvements in computers, R has become a necessary tool for all statistical practitioners; that makes the teaching and training of R extremely important.
+  Relatively speaking, the science of statistics is a new discipline. In 1998, the public image of statistics was poor, and almost nobody knows what statisticians do[@fromstats]. Now, statistics is an essential tool for nearly all millennial industries. Accompanied by technological improvements in computers, R has become a necessary tool for all statistical practitioners; that makes the teaching and training of R extremely important.
   
-  With that being said, R’s mastering has not been on student's to-do list until recent years. At the University of Toronto, up until fall in 2018, R’s learning is not compulsory until third-year courses. Many students expressed surprise when they first see R’s use in the classroom and are confused. The anxiety issue persists three years after the department made STA130 compulsory, which was an introduction to statistics and R. Studies show that the anxiety level affects students’ performance in the classroom and has the potential for further investigation[onlineanxiety]. 
+  With that being said, R’s mastering has not been on student's to-do list until recent years. At the University of Toronto, up until fall in 2018, R’s learning is not compulsory until third-year courses. Many students expressed surprise when they first see R’s use in the classroom and are confused. The anxiety issue persists three years after the department made STA130 compulsory, which was an introduction to statistics and R. Studies show that the anxiety level affects students’ performance in the classroom and has the potential for further investigation[@onlineanxiety]. 
   
   I am interested in the distribution of R anxiety levels among students. In this report, I will show the method to estimate the anxiety distribution among students using a sample I collected from the University of Toronto. I run a multilevel regression on my sample and then post-stratify the results using a simulated student census to get population estimates.
   
   The results of the analysis can be useful in many ways. The university can periodically conduct this analysis to keep track of teaching results; generally, this method should be solid for similar reports in any other university. Students can use the information as a threshold to understand where they stand among their peers. It is also possible to study the effect of a treatment such as data camp using this approach, which potentially saves cost for the department.
   
-  In paper we run our analysis in `R` [citeR]. We also use the `tidyverse` package which was written by tydr.
+  In paper we run our analysis in `R` [@citeR]. We also use the `tidyverse` package which was written by [@tydr].
 
 # Data
 
@@ -54,15 +52,15 @@ We ask respondents to self-evaluate their anxiety level on a scale of 10 when as
 
 We are restricting the year of study because we want to see how the anxiety levels vary within a group of students with similar exposure to R; students in the same year have similar experiences both timewise and course-wise. It is intuitive that the more experience a student has(the closer he/she is towards graduation), the more familiar he/she becomes with R and thus has a lower anxiety score.
 
-The total sample size is 48, from which 7 respondents answered ‘no’ to the qualification questions. That makes the sample size 41. Figure x shows the distribution of the programs from the sample. The coloring at the end of the bars indicates the respondent does not have any coding experience. We notice that this is a small part of the sample. 
+The total sample size is 48, from which 7 respondents answered ‘no’ to the qualification questions. That makes the sample size 41. Figure 1 shows the distribution of the programs from the sample. The coloring at the end of the bars indicates the respondent does not have any coding experience. We notice that this is a small part of the sample. 
 
-Figure x displays the anxiety score distribution from the raw data set. We see two prominent peaks in the distribution: around 3, which indicates the respondents do not feel very anxious, and around 7.5 indicates the respondents feel quite anxious. Most responses fall between these two peaks, with few respondents(3 out of 41) reports extreme anxiety scores towards 1 or 10. Looking at Figure x, we notice that our sample does not contain any students with a cumulative GPA lower than C. This skewness means that our sample is biased; specifically, students with higher cgpa have a stronger incentive to answer the survey.  We will adjust for this in the model by incorporating random effects. 
+Figure 3 displays the anxiety score distribution from the raw data set. We see two prominent peaks in the distribution: around 3, which indicates the respondents do not feel very anxious, and around 7.5 indicates the respondents feel quite anxious. Most responses fall between these two peaks, with few respondents(3 out of 41) reports extreme anxiety scores towards 1 or 10. Looking at Figure 2, we notice that our sample does not contain any students with a cumulative GPA lower than C. This skewness means that our sample is biased; specifically, students with higher cgpa have a stronger incentive to answer the survey.  We will adjust for this in the model by incorporating random effects. 
 
-We must point out that studies show the response biases for sensitive topics center are near zero, but the responses are unreliable or noisy[sensitive_info]. Since the cgpa and the anxiety score reveal information about students’ academic behavior, we consider them sensitive topics. We follow steps from [mathexample] using the `brms` package[brms1, brms2] to adjust for this. Further explanation will continue in the Model section. 
+We must point out that studies show the response biases for sensitive topics center are near zero, but the responses are unreliable or noisy[@sensitiveinfo]. Since the cgpa and the anxiety score reveal information about students’ academic behavior, we consider them sensitive topics. We follow steps from [@mathexample] using the `brms` package[@brmone, @brmtwo] to adjust for this. Further explanation will continue in the Model section. 
 
 ```{r}
 #Import the data and attach the variables to the path
-clean_data <- read_csv("~/GitHub/STA304-PS5/inputs/data/clean_data.csv")
+clean_data <- read_csv("~/Downloads/STA304-PS5-master/inputs/data/clean_data.csv")
 attach(clean_data)
 ```
 
@@ -107,12 +105,12 @@ ggplot(clean_data, aes(x = anxiety_score)) +
 - cgpa(5 levels);
 - conding_exp(2 levels).
 
-We use ladder four to create post-stratification cells. They contain information about an individual to divide them into groups and identify each individual using these four variables. The four variables make 2*8*5*2 = 160 possible cells. The distribution of each variable is simulated based on a rough estimation of the population. See fig x and x for a summary of the census. This report’s results are not estimates of the University of Toronto’s actual R anxiety distribution, even though the sample is collected from real respondents.
+We use ladder four to create post-stratification cells. They contain information about an individual to divide them into groups and identify each individual using these four variables. The four variables make 2*8*5*2 = 160 possible cells. The distribution of each variable is simulated based on a rough estimation of the population. See fig 4 and 5 for a summary of the census. This report’s results are not estimates of the University of Toronto’s actual R anxiety distribution, even though the sample is collected from real respondents.
 
   Based on the census, we developed a few prop data frames for post-stratification. We counted the number of individuals in each cell and saved it as cell_counts. 
 
 ```{r, fig.cap = "Program Distribution in Census"}
-census <- read_csv("~/GitHub/STA304-PS5/inputs/data/census.csv")
+census <- read_csv("~/Downloads/STA304-PS5-master/inputs/data/census.csv")
 #Create graph for program distribution in the census
 ggplot(census, aes(x = program)) +
   geom_bar(alpha = 0.8, color = "cyan4", fill = "cyan4") +
@@ -162,7 +160,7 @@ ggarrange(sex, cgpa, coding, labels = c("(a)", "(b)", "(c)"), ncol = 2, nrow = 2
 We use MRP to predict the anxiety level distribution among our population. This method adjusts our estimation results by first fitting a multilevel regression model using the sample, then applying it to the post-strat data set to predict the population. Specifically, each individual is defined by his/her sex, program, cgpa, and whether he/she has previous experience with coding. For each individual in the census, we predict that person’s anxiety score using the previous model using `add_predict_draws()` from `tidybayes.` Then we aggregate the cell-level estimates up to the population level. Using y to represent the anxiety score, 
 
 \begin{equation}
-\hat{y}_S^{PS} = \frac{\sum{N_j\hat{y_j}}}{\sum{N_j}}  (\#eq:PS)
+\hat{y}_S^{PS} = \frac{\sum{N_j\hat{y_j}}}{\sum{N_j}}  
 \end{equation}
 
 We get our post-stratification estimates by equation (1). You can see that the key to an accurate estimate relies not only on how well the model fits the data but also on the level to which the census represents the population. 
@@ -170,7 +168,7 @@ We get our post-stratification estimates by equation (1). You can see that the k
 We get our post-stratification estimates by equation (1). You can see that the key to an accurate estimate relies not only on how well the model fits the data but also on the level to which the census represents the population. There is often a trade-off between the cells’ division and the prediction results’ stability [forcast]. In our case, the 160 possible cells divide the population very finely(5.3 persons in each cell on average), which is another reason for us to use MRP. Equation (2) shows the formula we use for the model, where $\beta_{pro}$ represent the coefficient for the program beta, and $d_{sex}$ represents the indicating variable for sex. 
 
 \begin{equation}
-\hat{y} = \beta_0 + \beta_{sex}d_{sex} + \beta_{cgpa}x_{cgpa} + \beta_{pro}x_{pro} + \beta_{code}x_{code} + e (\#eq:formula)
+\hat{y} = \beta_0 + \beta_{sex}d_{sex} + \beta_{cgpa}x_{cgpa} + \beta_{pro}x_{pro} + \beta_{code}x_{code} + e 
 \end{equation}
 
 ## Model Validation
@@ -188,7 +186,7 @@ mod1 <- brms::brm(
 summary(mod1)
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, include = FALSE}
 #Perform 3-fold cross validation
 kfold <- kfold(mod1, K = 3, save_fits = TRUE, seed=TRUE)
 #Define a error calculation function
@@ -203,7 +201,7 @@ rmse(y = kfp$y, yrep = kfp$yrep)
 
 # Results
 
-  We use `add_predicted_draws()` to come up with estimations and their 95% confidence intervals. Figures 4-7 show the prediction results by different sex, program, cgpa, and coding experience, with the raw data results. We see that the MRP estimates produce a higher mean anxiety score comparing to the raw results. Specifically,
+  We use `add_predicted_draws()` to come up with estimations and their 95% confidence intervals. Figures 6-9 show the prediction results by different sex, program, cgpa, and coding experience, with the raw data results. We see that the MRP estimates produce a higher mean anxiety score comparing to the raw results. Specifically,
 
 - MRP estimates substantially different mean anxiety scores for males and females, while there was no sign of this pattern among our sample. The estimated average for females is 6 and is 5 for the male. There is no significant difference between the interval of the groups;
 - There is no significant difference in estimated mean anxiety scores between different programs. The confidence interval for the Actuarial Scitiest is longer than those of other programs, which means a broader range of anxiety levels within the program;
@@ -211,7 +209,7 @@ rmse(y = kfp$y, yrep = kfp$yrep)
 - Students with some previous coding experience are estimated to have a lower mean anxiety score than those who are new to programming. The experienced group also has a much smaller confidence interval, which indicates more stability. The inexperienced group’s upper boundary almost reaches 10, but its lower boundary is close to the lower boundary for the experienced group. 
 
 ```{r, fig.cap="MRP estimates vs Raw data in different sex groups"}
-sex_prop <- read_csv("~/GitHub/STA304-PS5/inputs/data/sex_prop.csv")
+sex_prop <- read_csv("~/Downloads/STA304-PS5-master/inputs/data/sex_prop.csv")
 res_sex <- mod1 %>% 
   add_predicted_draws(newdata = sex_prop, allow_new_levels = TRUE) %>% 
   rename(anxiety_predict = .prediction) %>% 
@@ -242,7 +240,7 @@ res_sex %>%
 ```
 
 ```{r, fig.cap="MRP estimates vs Raw data in different programs"}
-program_prop <- read_csv("~/GitHub/STA304-PS5/inputs/data/program_prop.csv")
+program_prop <- read_csv("~/Downloads/STA304-PS5-master/inputs/data/program_prop.csv")
 res_program <- mod1 %>% 
   add_predicted_draws(newdata = program_prop, allow_new_levels = TRUE) %>% 
   rename(anxiety_predict = .prediction) %>% 
@@ -273,7 +271,7 @@ res_program %>%
 ```
 
 ```{r, fig.cap="MRP estimates vs Raw data within different cgpa groups"}
-cgpa_prop <- read_csv("~/GitHub/STA304-PS5/inputs/data/cgpa_prop.csv")
+cgpa_prop <- read_csv("~/Downloads/STA304-PS5-master/inputs/data/cgpa_prop.csv")
 res_cgpa <- mod1 %>% 
   add_predicted_draws(newdata = cgpa_prop, allow_new_levels = TRUE) %>% 
   rename(anxiety_predict = .prediction) %>% 
@@ -304,7 +302,7 @@ res_cgpa %>%
 ```
 
 ```{r, fig.cap="MRP estimates vs Raw data with different coding experiences"}
-code_prop <- read_csv("~/GitHub/STA304-PS5/inputs/data/code_prop.csv")
+code_prop <- read_csv("~/Downloads/STA304-PS5-master/inputs/data/code_prop.csv")
 res_code <- mod1 %>% 
   add_predicted_draws(newdata = code_prop, allow_new_levels = TRUE) %>% 
   rename(anxiety_predict = .prediction) %>% 
@@ -337,7 +335,7 @@ res_code %>%
 
 ## Limitation and Future Researches
 
-[intro] states that MRP works well adjusting for biased samples only if the under/over-represented variables are present in the post-stratification data set. With that being said, to get a more reliable prediction result, future analysis can contain a pre-analysis which has more variables and use stepwise regression to select variables that contribute to the accuracy of the model. 
+[@intro] states that MRP works well adjusting for biased samples only if the under/over-represented variables are present in the post-stratification data set. With that being said, to get a more reliable prediction result, future analysis can contain a pre-analysis which has more variables and use stepwise regression to select variables that contribute to the accuracy of the model. 
 
 \newpage
 
