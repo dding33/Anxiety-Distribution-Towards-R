@@ -1,0 +1,109 @@
+"","sex","program","cgpa","coding_exp","n","proportion","prop"
+"1","Female","Actuarial Science Major","A (3.4 to 4.0)","Yes",2,0.00235294117647059,0.00491400491400491
+"2","Female","Actuarial Science Major","B (2.4 to 3.3)","No",2,0.00235294117647059,0.00491400491400491
+"3","Female","Actuarial Science Major","B (2.4 to 3.3)","Yes",10,0.0117647058823529,0.0245700245700246
+"4","Female","Actuarial Science Major","C (1.4 to 2.3)","No",1,0.00117647058823529,0.00245700245700246
+"5","Female","Actuarial Science Major","C (1.4 to 2.3)","Yes",7,0.00823529411764706,0.0171990171990172
+"6","Female","Actuarial Science Major","D (0.7 to 1.3)","No",3,0.00352941176470588,0.00737100737100737
+"7","Female","Actuarial Science Major","D (0.7 to 1.3)","Yes",10,0.0117647058823529,0.0245700245700246
+"8","Female","Actuarial Science Specialist","A (3.4 to 4.0)","Yes",1,0.00117647058823529,0.00245700245700246
+"9","Female","Actuarial Science Specialist","B (2.4 to 3.3)","No",1,0.00117647058823529,0.00245700245700246
+"10","Female","Actuarial Science Specialist","B (2.4 to 3.3)","Yes",4,0.00470588235294118,0.00982800982800983
+"11","Female","Actuarial Science Specialist","C (1.4 to 2.3)","Yes",3,0.00352941176470588,0.00737100737100737
+"12","Female","Actuarial Science Specialist","D (0.7 to 1.3)","No",2,0.00235294117647059,0.00491400491400491
+"13","Female","Actuarial Science Specialist","D (0.7 to 1.3)","Yes",2,0.00235294117647059,0.00491400491400491
+"14","Female","Applied Statistics Specialist","A (3.4 to 4.0)","Yes",1,0.00117647058823529,0.00245700245700246
+"15","Female","Applied Statistics Specialist","B (2.4 to 3.3)","Yes",3,0.00352941176470588,0.00737100737100737
+"16","Female","Applied Statistics Specialist","C (1.4 to 2.3)","Yes",2,0.00235294117647059,0.00491400491400491
+"17","Female","Applied Statistics Specialist","D (0.7 to 1.3)","No",1,0.00117647058823529,0.00245700245700246
+"18","Female","Applied Statistics Specialist","D (0.7 to 1.3)","Yes",1,0.00117647058823529,0.00245700245700246
+"19","Female","Data Science Specialist","A (3.4 to 4.0)","Yes",2,0.00235294117647059,0.00491400491400491
+"20","Female","Data Science Specialist","B (2.4 to 3.3)","No",2,0.00235294117647059,0.00491400491400491
+"21","Female","Data Science Specialist","B (2.4 to 3.3)","Yes",4,0.00470588235294118,0.00982800982800983
+"22","Female","Data Science Specialist","C (1.4 to 2.3)","No",2,0.00235294117647059,0.00491400491400491
+"23","Female","Data Science Specialist","C (1.4 to 2.3)","Yes",7,0.00823529411764706,0.0171990171990172
+"24","Female","Data Science Specialist","D (0.7 to 1.3)","No",2,0.00235294117647059,0.00491400491400491
+"25","Female","Data Science Specialist","D (0.7 to 1.3)","Yes",7,0.00823529411764706,0.0171990171990172
+"26","Female","Data Science Specialist","F (0.0 to 0.6)","Yes",1,0.00117647058823529,0.00245700245700246
+"27","Female","Statistics Major","A (3.4 to 4.0)","No",5,0.00588235294117647,0.0122850122850123
+"28","Female","Statistics Major","A (3.4 to 4.0)","Yes",22,0.0258823529411765,0.0540540540540541
+"29","Female","Statistics Major","B (2.4 to 3.3)","No",8,0.00941176470588235,0.0196560196560197
+"30","Female","Statistics Major","B (2.4 to 3.3)","Yes",50,0.0588235294117647,0.122850122850123
+"31","Female","Statistics Major","C (1.4 to 2.3)","No",17,0.02,0.0417690417690418
+"32","Female","Statistics Major","C (1.4 to 2.3)","Yes",62,0.0729411764705882,0.152334152334152
+"33","Female","Statistics Major","D (0.7 to 1.3)","No",8,0.00941176470588235,0.0196560196560197
+"34","Female","Statistics Major","D (0.7 to 1.3)","Yes",35,0.0411764705882353,0.085995085995086
+"35","Female","Statistics Methods and Practice Specialist","B (2.4 to 3.3)","No",1,0.00117647058823529,0.00245700245700246
+"36","Female","Statistics Methods and Practice Specialist","B (2.4 to 3.3)","Yes",4,0.00470588235294118,0.00982800982800983
+"37","Female","Statistics Methods and Practice Specialist","C (1.4 to 2.3)","Yes",11,0.0129411764705882,0.027027027027027
+"38","Female","Statistics Methods and Practice Specialist","D (0.7 to 1.3)","Yes",2,0.00235294117647059,0.00491400491400491
+"39","Female","Statistics Minor","A (3.4 to 4.0)","Yes",9,0.0105882352941176,0.0221130221130221
+"40","Female","Statistics Minor","B (2.4 to 3.3)","Yes",20,0.0235294117647059,0.0491400491400491
+"41","Female","Statistics Minor","C (1.4 to 2.3)","No",3,0.00352941176470588,0.00737100737100737
+"42","Female","Statistics Minor","C (1.4 to 2.3)","Yes",12,0.0141176470588235,0.0294840294840295
+"43","Female","Statistics Minor","D (0.7 to 1.3)","No",3,0.00352941176470588,0.00737100737100737
+"44","Female","Statistics Minor","D (0.7 to 1.3)","Yes",22,0.0258823529411765,0.0540540540540541
+"45","Female","Statistics Minor","F (0.0 to 0.6)","Yes",1,0.00117647058823529,0.00245700245700246
+"46","Female","Statistics Theory and Methods Specialist","A (3.4 to 4.0)","Yes",3,0.00352941176470588,0.00737100737100737
+"47","Female","Statistics Theory and Methods Specialist","B (2.4 to 3.3)","Yes",7,0.00823529411764706,0.0171990171990172
+"48","Female","Statistics Theory and Methods Specialist","C (1.4 to 2.3)","No",2,0.00235294117647059,0.00491400491400491
+"49","Female","Statistics Theory and Methods Specialist","C (1.4 to 2.3)","Yes",8,0.00941176470588235,0.0196560196560197
+"50","Female","Statistics Theory and Methods Specialist","D (0.7 to 1.3)","No",1,0.00117647058823529,0.00245700245700246
+"51","Female","Statistics Theory and Methods Specialist","D (0.7 to 1.3)","Yes",8,0.00941176470588235,0.0196560196560197
+"52","Male","Actuarial Science Major","A (3.4 to 4.0)","No",1,0.00117647058823529,0.00225733634311512
+"53","Male","Actuarial Science Major","A (3.4 to 4.0)","Yes",4,0.00470588235294118,0.0090293453724605
+"54","Male","Actuarial Science Major","B (2.4 to 3.3)","No",3,0.00352941176470588,0.00677200902934537
+"55","Male","Actuarial Science Major","B (2.4 to 3.3)","Yes",11,0.0129411764705882,0.0248306997742664
+"56","Male","Actuarial Science Major","C (1.4 to 2.3)","No",1,0.00117647058823529,0.00225733634311512
+"57","Male","Actuarial Science Major","C (1.4 to 2.3)","Yes",9,0.0105882352941176,0.0203160270880361
+"58","Male","Actuarial Science Major","D (0.7 to 1.3)","Yes",10,0.0117647058823529,0.0225733634311512
+"59","Male","Actuarial Science Specialist","A (3.4 to 4.0)","Yes",2,0.00235294117647059,0.00451467268623025
+"60","Male","Actuarial Science Specialist","B (2.4 to 3.3)","Yes",6,0.00705882352941176,0.0135440180586907
+"61","Male","Actuarial Science Specialist","C (1.4 to 2.3)","No",1,0.00117647058823529,0.00225733634311512
+"62","Male","Actuarial Science Specialist","C (1.4 to 2.3)","Yes",5,0.00588235294117647,0.0112866817155756
+"63","Male","Actuarial Science Specialist","D (0.7 to 1.3)","Yes",3,0.00352941176470588,0.00677200902934537
+"64","Male","Applied Statistics Specialist","A (3.4 to 4.0)","No",1,0.00117647058823529,0.00225733634311512
+"65","Male","Applied Statistics Specialist","A (3.4 to 4.0)","Yes",1,0.00117647058823529,0.00225733634311512
+"66","Male","Applied Statistics Specialist","B (2.4 to 3.3)","Yes",1,0.00117647058823529,0.00225733634311512
+"67","Male","Applied Statistics Specialist","C (1.4 to 2.3)","No",2,0.00235294117647059,0.00451467268623025
+"68","Male","Applied Statistics Specialist","C (1.4 to 2.3)","Yes",2,0.00235294117647059,0.00451467268623025
+"69","Male","Applied Statistics Specialist","D (0.7 to 1.3)","No",1,0.00117647058823529,0.00225733634311512
+"70","Male","Applied Statistics Specialist","D (0.7 to 1.3)","Yes",4,0.00470588235294118,0.0090293453724605
+"71","Male","Data Science Specialist","A (3.4 to 4.0)","Yes",3,0.00352941176470588,0.00677200902934537
+"72","Male","Data Science Specialist","B (2.4 to 3.3)","No",1,0.00117647058823529,0.00225733634311512
+"73","Male","Data Science Specialist","B (2.4 to 3.3)","Yes",5,0.00588235294117647,0.0112866817155756
+"74","Male","Data Science Specialist","C (1.4 to 2.3)","No",1,0.00117647058823529,0.00225733634311512
+"75","Male","Data Science Specialist","C (1.4 to 2.3)","Yes",1,0.00117647058823529,0.00225733634311512
+"76","Male","Data Science Specialist","D (0.7 to 1.3)","Yes",6,0.00705882352941176,0.0135440180586907
+"77","Male","Data Science Specialist","F (0.0 to 0.6)","Yes",1,0.00117647058823529,0.00225733634311512
+"78","Male","Statistics Major","A (3.4 to 4.0)","No",2,0.00235294117647059,0.00451467268623025
+"79","Male","Statistics Major","A (3.4 to 4.0)","Yes",18,0.0211764705882353,0.0406320541760722
+"80","Male","Statistics Major","B (2.4 to 3.3)","No",10,0.0117647058823529,0.0225733634311512
+"81","Male","Statistics Major","B (2.4 to 3.3)","Yes",46,0.0541176470588235,0.103837471783296
+"82","Male","Statistics Major","C (1.4 to 2.3)","No",12,0.0141176470588235,0.0270880361173815
+"83","Male","Statistics Major","C (1.4 to 2.3)","Yes",66,0.0776470588235294,0.148984198645598
+"84","Male","Statistics Major","D (0.7 to 1.3)","No",8,0.00941176470588235,0.018058690744921
+"85","Male","Statistics Major","D (0.7 to 1.3)","Yes",50,0.0588235294117647,0.112866817155756
+"86","Male","Statistics Major","F (0.0 to 0.6)","Yes",1,0.00117647058823529,0.00225733634311512
+"87","Male","Statistics Methods and Practice Specialist","A (3.4 to 4.0)","Yes",1,0.00117647058823529,0.00225733634311512
+"88","Male","Statistics Methods and Practice Specialist","B (2.4 to 3.3)","No",2,0.00235294117647059,0.00451467268623025
+"89","Male","Statistics Methods and Practice Specialist","B (2.4 to 3.3)","Yes",4,0.00470588235294118,0.0090293453724605
+"90","Male","Statistics Methods and Practice Specialist","C (1.4 to 2.3)","Yes",6,0.00705882352941176,0.0135440180586907
+"91","Male","Statistics Methods and Practice Specialist","D (0.7 to 1.3)","No",2,0.00235294117647059,0.00451467268623025
+"92","Male","Statistics Methods and Practice Specialist","D (0.7 to 1.3)","Yes",2,0.00235294117647059,0.00451467268623025
+"93","Male","Statistics Minor","A (3.4 to 4.0)","Yes",3,0.00352941176470588,0.00677200902934537
+"94","Male","Statistics Minor","B (2.4 to 3.3)","No",2,0.00235294117647059,0.00451467268623025
+"95","Male","Statistics Minor","B (2.4 to 3.3)","Yes",31,0.0364705882352941,0.0699774266365688
+"96","Male","Statistics Minor","C (1.4 to 2.3)","No",6,0.00705882352941176,0.0135440180586907
+"97","Male","Statistics Minor","C (1.4 to 2.3)","Yes",30,0.0352941176470588,0.0677200902934537
+"98","Male","Statistics Minor","D (0.7 to 1.3)","No",3,0.00352941176470588,0.00677200902934537
+"99","Male","Statistics Minor","D (0.7 to 1.3)","Yes",30,0.0352941176470588,0.0677200902934537
+"100","Male","Statistics Minor","F (0.0 to 0.6)","Yes",1,0.00117647058823529,0.00225733634311512
+"101","Male","Statistics Theory and Methods Specialist","A (3.4 to 4.0)","Yes",2,0.00235294117647059,0.00451467268623025
+"102","Male","Statistics Theory and Methods Specialist","B (2.4 to 3.3)","No",1,0.00117647058823529,0.00225733634311512
+"103","Male","Statistics Theory and Methods Specialist","B (2.4 to 3.3)","Yes",3,0.00352941176470588,0.00677200902934537
+"104","Male","Statistics Theory and Methods Specialist","C (1.4 to 2.3)","No",2,0.00235294117647059,0.00451467268623025
+"105","Male","Statistics Theory and Methods Specialist","C (1.4 to 2.3)","Yes",7,0.00823529411764706,0.0158013544018059
+"106","Male","Statistics Theory and Methods Specialist","D (0.7 to 1.3)","No",2,0.00235294117647059,0.00451467268623025
+"107","Male","Statistics Theory and Methods Specialist","D (0.7 to 1.3)","Yes",3,0.00352941176470588,0.00677200902934537
+"108","Male","Statistics Theory and Methods Specialist","F (0.0 to 0.6)","Yes",1,0.00117647058823529,0.00225733634311512

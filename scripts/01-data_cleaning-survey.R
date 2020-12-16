@@ -6,12 +6,13 @@
 # License: MIT
 # Pre-requisites: 
 # - You need to send an email to the contact email to obtain the data.
+# But the clean_data.csv under inputs->data should be sufficient to reproduce this analysis.
 
 #### Workspace setup ####
 library(haven)
 library(tidyverse)
 # Read in the raw data 
-raw_data <- read.csv("survey_results.csv")
+raw_data <- read.csv("survey_results.csv")# Remember to set this to where the result is.
 # Add the labels
 raw_data <- labelled::to_factor(raw_data)
 # Rename the variables
