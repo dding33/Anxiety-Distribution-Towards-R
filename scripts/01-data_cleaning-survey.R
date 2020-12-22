@@ -4,9 +4,9 @@
 # Data: 12 December 2020
 # Contact: yiqu.ding@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: 
-# - You need to send an email to the contact email to obtain the data.
-# But the clean_data.csv under inputs->data should be sufficient to reproduce this analysis.
+# 1. Please note that the original data survey_results.csv is not avaliable for privacy reasons. You should be able to reproduce 
+# paper.rmd using clean_data.csv provided in the outputs folder. 
+# 2. The porpose of this script is to show you the process of my data cleaning.
 
 #### Workspace setup ####
 library(haven)
