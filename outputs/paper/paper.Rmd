@@ -1,5 +1,6 @@
 ---
 title: "Estimating R Anxiety Level Distribution Among Students At the University Using MRP"
+subtitle: "Predicted Average Anxiety Score is Higher than 5 Using Simulated Census"
 author: "Yiqu Ding"
 thanks: "Code and data are available at: https://github.com/dding33/STA304-PS5."
 date: "`r Sys.Date()`"
@@ -7,7 +8,7 @@ output: pdf_document
 bibliography: references.bib
 nocite: '@*'
 abstract: |
-  In this report, I looked at different factors that affect a student's anxiety level towards using R. The data is obtained from online survey responses, which contained variables that could influence anxiety levels. I then run a multilevel regression on the sample and post-stratify them using a simulated student census. After the post-stratification, we see the estimated mean anxiety scores differ from the raw data’s average anxiety scores.  
+  This report looks at different factors that affect a student's anxiety level towards using R. The data is obtained from online survey responses, which contained variables that could influence anxiety levels. We then run a multilevel regression on the sample and post-stratify them using a simulated student census. After the post-stratification, we see the estimated mean anxiety scores differ from the raw data’s average anxiety scores.  
   
   **Keywords**: MRP, R, Psychology, Education
 ---
@@ -30,15 +31,15 @@ Relatively speaking, the science of statistics is a new discipline. In 1998, the
 
 With that being said, R’s mastering has not been on student's to-do list until recent years. At the University of Toronto, up until fall 2018, R’s learning is not compulsory for first-year stats students. Many students expressed surprise when they first see R’s use in the classroom and are confused. The anxiety issue persists three years after the department made STA130 compulsory, which was an introduction to statistics and R. Studies show that the anxiety level affects students’ performance in the classroom and has the potential for further investigation[@onlineanxiety]. 
 
-This report focuses on the distribution of R anxiety levels among students. We will show the method to estimate the anxiety distribution among students using a sample I collected from the University of Toronto. I run a multilevel regression on my sample and then post-stratify the results using a simulated student census to get population estimates.
+This report focuses on the distribution of R anxiety levels among students. We will show the method to estimate the anxiety distribution among students using a sample I collected from the University of Toronto. I run a multilevel regression on my sample and then post-stratify the results using a simulated student census to get population estimates. Specifically, we post-stratify four variables: sex, program, cgpa, and whether the respondent has experience with codes. The MRP estimates vary from raw data outputs, and it tends to stabilize the predicted average anxiety level. There is a significant difference in estimated anxiety levels between groups of the opposite sex and between different experience levels. 
 
   The results of the analysis can be useful in many ways. The university can periodically conduct this analysis to keep track of teaching results; generally, this method should be solid for similar reports in any other university. Students can use the information as a threshold to understand where they stand among their peers. It is also possible to study the effect of a treatment such as data camp using this approach, which potentially saves cost for the department.
   
-In this report, we run our analysis in `R` [@citeR]. We also use the `tidyverse` package, which was written by [@tydr]. See the complete list of packages used in the appendix.
+In this report, we run our analysis in `R` [@citeR]. See the appendix for complete list of platforms that we used.
 
 # Data
 
-Multilevel regression and post-stratification require two data sets.  We train a multilevel regression model using our sample data set(which is the smaller one), then apply the results to the second data set(usually an extensive data set like a census) to mimic our population’s behaviour. In the context of this report, we want to estimate the anxiety score for all third-year statistics students at the University of Toronto.
+Multilevel regression and post-stratification requires two data sets.  We train a multilevel regression model using our sample data set(which is the smaller one), then apply the results to the second data set(usually an extensive data set like a census) to mimic our population’s behaviour. In the context of this report, we want to estimate the anxiety score for all third-year statistics students at the University of Toronto.
 
 The idea came from an example in @mathexample studying anxiety level towards mathematics. 
 
@@ -54,9 +55,15 @@ We ask respondents to self-evaluate their anxiety level on a scale of 10 when as
 
 We restrict the year of study because we want to see how the anxiety levels vary within a group of students with similar exposure to R. Students in the same year of study have similar experiences both timewise and course-wise. It is intuitive that the more experience a student has(the closer he/she is towards graduation), the more familiar he/she becomes with R and thus has a lower anxiety score.
 
-The total sample size is 48, from which 7 respondents answered ‘no’ to the qualification questions. That makes the sample size 41. Figure 1 shows the distribution of the programs from the sample. The colouring at the end of the bars indicates the respondent does not have any coding experience. We notice that this is a small part of the sample. 
+The total sample size is 48, from which 7 respondents answered ‘no’ to the qualification questions. Therefore the effective sample size is 41, and it has five categorical variables:
 
-Figure 3 displays the anxiety score distribution from the raw data set. We see two prominent peaks in the distribution: at around 3, which indicates the respondents do not feel very anxious, and at around 7.5 indicates the respondents feel quite anxious. Most responses fall between these two peaks, with few respondents(3 out of 41) reports extreme anxiety scores towards 1 or 10. Looking at Figure 2, we notice that our sample does not contain any students with a cumulative GPA lower than C. This skewness means that our sample is biased; specifically, students with higher cgpa have a stronger incentive to answer the survey.  We will adjust for this in the model by incorporating random effects. 
+- anxiety_score: the self-evaluated anxiety level;
+- sex: indicates whether the respondent is male or female;
+- program: specifies the program of the respondent. Respondents are asked only to pick one program. This variable has eight levels, corresponding to the eight statistics programs under the statistics department;
+- cgpa: records the cumulative GPA of the respondent. This variable is categorized to mask personal information. It contains five levels, corresponding to A, B, C, D and F;
+- coding_exp: indicates whether the respondent has previous experience with codes. 
+
+Figure 1 shows the distribution of the programs from the sample. The colouring at the end of the bars indicates the respondent does not have any coding experience. We notice that this is a small part of the sample. Looking at Figure 2, we notice that our sample does not contain any students with a cumulative GPA lower than C. This skewness means that our sample is biased; specifically, students with higher cgpa have a stronger incentive to answer the survey.  We will adjust for this in the model by incorporating random effects. Figure 3 displays the anxiety score distribution from the raw data set. We see two prominent peaks in the distribution: at around 3, which indicates the respondents do not feel very anxious, and at around 7.5 indicates the respondents feel quite anxious. Most responses fall between these two peaks, with few respondents(3 out of 41) reports extreme anxiety scores towards 1 or 10. 
 
 We must point out that studies show the response biases for sensitive topics center are near zero, but the responses are unreliable or noisy[@sensitiveinfo]. Since the cgpa and the anxiety score reveal information about students’ academic behaviour, we consider them sensitive topics. We follow steps from [@mathexample] using the `brms` package[@brmone][@brmtwo] to adjust for this bias.
 
@@ -107,7 +114,7 @@ We simulate a census data set for all third-year stats students and use this as 
 - cgpa(5 levels)
 - conding_exp(2 levels).
 
-We use ladder four to create post-stratification cells. They contain information about an individual to divide them into groups and identify them using these four variables. The four variables make $2*8*5*2 = 160$ possible cells. Each variable’s distribution is simulated using random sampling with proportions for some variables and stabilized using a seed. We base the proportions on a rough estimation of the population. The proportions of females and males are randomly selected; the resulted ratio seems reasonable(around 1:1). We fail to find relative information on the distribution of programs within a department; therefore, each program’s proportion is based on a completely arbitrary list of proportions.  We estimate the most students are getting a cgpa of B or C, considering the year of study and some course averages available. Given the existence of STA130, a compulsory course for first-year stats students since 2017, we expect most of the population to have some sort of experience with codes. However, students may transfer into the program after the first-year hence have not taken this course. Some students pursuing a minor in statistics might not have any experience with codes as well. Therefore, we assume 85% of the population has some experience with codes, and 15% are inexperienced. See fig 4 and 5 for a summary of the census. 
+We use ladder four categorical variables to create post-stratification cells. They contain information about an individual to divide them into groups and identify them using these four variables. The four variables make $2*8*5*2 = 160$ possible cells. Each variable’s distribution is simulated using random sampling with proportions for some variables and stabilized using a seed. We base the proportions on a rough estimation of the population. The proportions of females and males are randomly selected; the resulted ratio seems reasonable(around 1:1). We fail to find relative information on the distribution of programs within a department; therefore, each program’s proportion is based on a completely arbitrary list of proportions.  We estimate the most students are getting a cgpa of B or C, considering the year of study and some course averages available. Given the existence of STA130, a compulsory course for first-year stats students since 2017, we expect most of the population to have some sort of experience with codes. However, students may transfer into the program after the first-year hence have not taken this course. Some students pursuing a minor in statistics might not have any experience with codes as well. Therefore, we assume 85% of the population has some experience with codes, and 15% are inexperienced. See fig 4 and 5 for a summary of the census. 
 
 Based on the census, we developed a few prop data frames for post-stratification. We counted the number of individuals in each cell and saved it as cell_counts. We then created data frames for each variable to record the proportions of each type of individual in the population. 
 
@@ -161,21 +168,23 @@ ggarrange(sex, cgpa, coding, labels = c("(a)", "(b)", "(c)"), ncol = 2, nrow = 2
 
 ## MRP
 
-We use multilevel regression with post-stratification to predict the anxiety level distribution among our population. This method adjusts our estimation results by first fitting a multilevel regression model using the sample, then applying it to the post-strat data set to predict the population. Specifically, each individual is defined by his/her sex, program, cgpa, and whether he/she has previous experience with coding. For each individual in the census, we predict that person’s anxiety score using the previous model using `add_predict_draws()` from `tidybayes.` Then we aggregate the cell-level estimates to the population level. Using y to represent the anxiety score, we can estimate the anxiety score for any subpopulation:
+We use multilevel regression with post-stratification to predict the anxiety level distribution among our population. This method adjusts our estimation results by first fitting a multilevel regression model using the sample, then applying it to the post-strat data set to predict the population. Specifically, each individual is defined by his/her sex, program, cgpa, and whether he/she has previous experience with coding. Therefore the response variable is the anxiety score, and the independent variables are sex, program, cgpa and coding_exp.
+
+For each individual in the census, we predict that person’s anxiety score using the previous model using `add_predict_draws()` from `tidybayes.` Then we aggregate the cell-level estimates to the population level. Using y to represent the anxiety score, we can estimate the anxiety score for any subpopulation:
 
 \begin{equation}
-\hat{y}_{sub}^{PS} = \frac{\sum{N_j\hat{y_j}}_{j\in{J_{sub}}}}{\sum{N_j}_{j\in{J_{sub}}}} 
+\hat{y}_{sub}^{PS} = \frac{\sum_{j\in{J_{sub}}}{N_j\hat{y_j}}}{\sum_{j\in{J_{sub}}}{N_j}} 
 \end{equation}
 
-We get our post-stratification estimates by equation (1), where $J_s$ are all the cells that are in the subpopulation and  $\hat{y}_{sub}^{PS}$ is based on our multilevel regression model.
+We get our post-stratification estimates by equation (1), where $J_s$ are all the cells that are in the subpopulation and  $\hat{y}_{sub}^{PS}$ is based on our multilevel regression model. You can see that the key to an accurate estimate relies not only on how well the model fits the data but also on the level to which the census represents the population. 
 
-You can see that the key to an accurate estimate relies not only on how well the model fits the data but also on the level to which the census represents the population. 
-
-There is often a trade-off between the cells’ division and the prediction results’ stability [@forcast]. In our case, the 160 possible cells divide the population finely(5.3 persons in each cell on average), which is another reason for us to use MRP. Equation (2) shows the formula we use for the model, where $\beta_{pro}$ represent the coefficient for the program beta, and $d_{sex}$ represents the indicating variable for sex. 
+There is often a trade-off between the cells’ division and the prediction results’ stability [@forcast]. In our case, the 160 possible cells divide the population finely(5.3 persons in each cell on average), which is another reason for us to use MRP. Equation (2) shows the formula we use for the model, where $\beta_0$ represents the estimate for the intercept, $\beta_{sex}$ estimates the coefficient for the sex variable. $\beta_{pro}$ represent the coefficient for the program beta, $\beta_{cgpa}$ estimates the coefficient for the cumulative GPA variable, and $\beta_{code}$ estimates the coefficient for the coding_exp variable. and $d_{sex}$ represents the indicating variable for sex. 
 
 \begin{equation}
 \hat{y} = \beta_0 + \beta_{sex}d_{sex} + \beta_{cgpa}x_{cgpa} + \beta_{pro}x_{pro} + \beta_{code}x_{code} + e 
 \end{equation}
+
+For each individual, given the information on sex, program, cgpa and whether he/she has experience with codes, we are able to predict the average anxiety level for the individual, which is exactly what post-stratification does. 
 
 ## Model Validation
 
@@ -205,7 +214,7 @@ rmse(y = kfp$y, yrep = kfp$yrep)
 
 # Results
 
-We use `add_predicted_draws()` to come up with estimations and their 95% confidence intervals. Figures 6-9 show the prediction results by different sex, program, cgpa, and coding experience, with the raw data results. We see that the MRP estimates produce a different mean anxiety score for each subpopulation group comparing to the raw results. Specifically:
+We use `add_predicted_draws()` to come up with estimations and their 95% confidence intervals. Figures 6-9 show the prediction results by different sex, program, cgpa, and coding experience compared to the raw data results. We see that the MRP estimates produce a different mean anxiety score for each subpopulation group comparing to the raw results. Specifically:
 
 - MRP estimates substantially different mean anxiety scores for males and females. The estimated average for females is 6 and is 5 for the male. There is no significant difference between the groups’ interval, the MRP estimator for males is lower than raw data, and for females, it is higher than the raw data. This means the gap between males and females in the population is not as extreme as it is in our sample;
 - There is no significant difference in estimated mean anxiety scores between different programs. The confidence intervals for the actuarial specialist and the statistical methods and practice specialist are longer than those of other programs, which means a broader range of anxiety levels within the program. The MRP estimate for the three programs is higher than the raw data average, and the MRP estimate for the rest five programs are lower than the raw data average. The Statistics Methods and Practise specialist also has the highest upper bound for its 95% Confidence interval of the estimate;
@@ -339,7 +348,7 @@ For different grade groups, group B particularly stands out. This pattern indica
 
 Even "pulled”, the MRP estimates different anxiety levels on average for males and females. This difference is not uncommon in many so-called male-dominant industries like software development and IT. For example, studies show that female developers are hesitant to explore the opportunities to contribute to new projects even when they possess the competence to make valuable contributions[@femalegit]. Female students may feel less confident with their R skills for similar reasons. 
 
-In conclusion, the anxiety level within programs does not differ significantly. But for sex, it does. We encourage using sex-specific treatments to resolve this; many top-of-the-world universities have coding camps for females students, like "girls who code"^[https://www.harvardwics.com/girls-who-code] from the Harvard Univerisity and “Girls Teaching Girls to Code”^[https://125.stanford.edu/girls-teaching-girls-code/] at Stanford University. Mental health and confidence-building are essential aspects to consider, especially observing the higher-than-other anxiety levels for students earning B. A study regarding the relationship between the anxiety level and GPA states depression is a significant predictor of lower GPA and a higher probability of dropping out, particularly among students who also have a positive screen for an anxiety disorder[@mental]; even though anxiety towards R does not necessarily imply anxiety disorder, it could still affect students' academic behaviour and have a negative effect on maintaining students' mental health. Students with coding experience are significantly less anxious than those who have not been using R, which indicates some introductory course could help reducing students' anxiety levels. Adding a specific introductory course for R like CSC108 is for python also appeared as answers to students’ solution towards R anxiety. However, we expect the inexperienced group’s size to drop in the next few years at the University of Toronto. As older students graduate, the new generation of statistics students should all have taken STA130, which means they will have some experience towards R before they are asked to complete more complicated tasks with R.
+In conclusion, the anxiety level within programs does not differ significantly. But for sex, it does. We encourage using sex-specific treatments to resolve this; many top-of-the-world universities have coding camps for females students, like "Girls Who Code"^[https://www.harvardwics.com/girls-who-code] from the Harvard Univerisity and “Girls Teaching Girls to Code”^[https://125.stanford.edu/girls-teaching-girls-code/] at Stanford University. Mental health and confidence-building are essential aspects to consider, especially observing the higher-than-other anxiety levels for students earning B. A study regarding the relationship between the anxiety level and GPA states depression is a significant predictor of lower GPA and a higher probability of dropping out, particularly among students who also have a positive screen for an anxiety disorder[@mental]; even though anxiety towards R does not necessarily imply anxiety disorder, it could still affect students' academic behaviour and have a negative effect on maintaining students' mental health. Students with coding experience are significantly less anxious than those who have not been using R, which indicates some introductory course could help reducing students' anxiety levels. Adding a specific introductory course for R like CSC108 is for python also appeared as answers to students’ solution towards R anxiety. However, we expect the inexperienced group’s size to drop in the next few years at the University of Toronto. As older students graduate, the new generation of statistics students should all have taken STA130, which means they will have some experience towards R before they are asked to complete more complicated tasks with R.
 
 ## Limitation and Future Researches
 
